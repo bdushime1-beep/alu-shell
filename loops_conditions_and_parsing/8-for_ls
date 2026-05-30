@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This script lists current directory names after the first dash using a for loop
+for name in *; do
+  echo "${name#*-}"
+done
