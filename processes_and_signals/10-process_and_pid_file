@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# This script manages a PID file and handles process signals
+pid_file=/var/run/myscript.pid
+
+cleanup() {
+  rm -f "$pid_file"
+  exit 0
+}
+
+term_handler() {
+  echo "I hate the kill command"
+  cleanup
+}
+
+int_handler() {
+  echo "Y U no love me?!"
+}
+
+trap 'term_handler' SIGTERM
+trap 'cleanup' SIGQUIT
+trap 'int_handler' SIGINT
+
+echo "$$" > "$pid_file"
+while :; do
+  echo "To infinity and beyond"
+  sleep 2
+done
