@@ -1,0 +1,2 @@
+#!/bin/bash
+stat -c %U hello | awk '/^guillaume$/{system("chown vincent hello")}'
